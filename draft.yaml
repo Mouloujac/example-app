@@ -1,0 +1,35 @@
+models:
+  Book:
+    googlebook_id: string:200
+    title: string:400 nullable
+    author: string:250 nullable
+    description: longtext nullable
+    img: longtext nullable
+    note_id: id foreign nullable
+    commentaire_id: id foreign nullable
+  
+  Collection:
+    user_id: id foreign
+    book_id: id foreign 
+
+  Note:
+    book_id: id foreign
+    content: int
+
+  Commentaire:
+    book_id: id foreign
+    content: string:200
+
+
+controllers:
+  Book:
+    resource
+
+  Collection:
+    resource
+
+  Note:
+    resource
+
+  Commentaire:
+    resource

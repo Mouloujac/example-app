@@ -1,0 +1,45 @@
+created:
+    - app/Http/Controllers/BookController.php
+    - app/Http/Controllers/CollectionController.php
+    - app/Http/Controllers/NoteController.php
+    - app/Http/Controllers/CommentaireController.php
+    - database/factories/BookFactory.php
+    - database/factories/CollectionFactory.php
+    - database/factories/NoteFactory.php
+    - database/factories/CommentaireFactory.php
+    - database/migrations/2023_03_10_090430_create_books_table.php
+    - database/migrations/2023_03_10_090431_create_collections_table.php
+    - database/migrations/2023_03_10_090432_create_notes_table.php
+    - database/migrations/2023_03_10_090433_create_commentaires_table.php
+    - app/Models/Book.php
+    - app/Models/Collection.php
+    - app/Models/Note.php
+    - app/Models/Commentaire.php
+    - tests/Feature/Http/Controllers/BookControllerTest.php
+    - tests/Feature/Http/Controllers/CollectionControllerTest.php
+    - tests/Feature/Http/Controllers/NoteControllerTest.php
+    - tests/Feature/Http/Controllers/CommentaireControllerTest.php
+updated:
+    - routes/web.php
+skipped:
+    - resources/views/book/index.blade.php
+    - resources/views/book/create.blade.php
+    - resources/views/book/show.blade.php
+    - resources/views/book/edit.blade.php
+    - resources/views/collection/index.blade.php
+    - resources/views/collection/create.blade.php
+    - resources/views/collection/show.blade.php
+    - resources/views/collection/edit.blade.php
+    - resources/views/note/index.blade.php
+    - resources/views/note/create.blade.php
+    - resources/views/note/show.blade.php
+    - resources/views/note/edit.blade.php
+    - resources/views/commentaire/index.blade.php
+    - resources/views/commentaire/create.blade.php
+    - resources/views/commentaire/show.blade.php
+    - resources/views/commentaire/edit.blade.php
+models:
+    Book: { googlebook_id: 'string:200', title: 'string:400 nullable', author: 'string:250 nullable', description: 'longtext nullable', img: 'longtext nullable', note_id: 'id foreign nullable', commentaire_id: 'id foreign nullable' }
+    Collection: { user_id: 'id foreign', book_id: 'id foreign' }
+    Note: { book_id: 'id foreign', content: int }
+    Commentaire: { book_id: 'id foreign', content: 'string:200' }
