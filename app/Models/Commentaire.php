@@ -16,7 +16,7 @@ class Commentaire extends Model
      * @var array
      */
     protected $fillable = [
-        'book_id',
+        'collection_id',
         'content',
     ];
 
@@ -27,11 +27,11 @@ class Commentaire extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'book_id' => 'integer',
+        'collection_id' => 'integer',
     ];
 
-    public function book(): BelongsTo
+    public function collection(): BelongsTo
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Collection::class);
     }
 }

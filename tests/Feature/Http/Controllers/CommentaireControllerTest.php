@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Collection;
 use App\Models\Commentaire;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -60,16 +60,16 @@ class CommentaireControllerTest extends TestCase
      */
     public function store_saves_and_redirects(): void
     {
-        $book = Book::factory()->create();
+        $collection = Collection::factory()->create();
         $content = $this->faker->paragraphs(3, true);
 
         $response = $this->post(route('commentaire.store'), [
-            'book_id' => $book->id,
+            'collection_id' => $collection->id,
             'content' => $content,
         ]);
 
         $commentaires = Commentaire::query()
-            ->where('book_id', $book->id)
+            ->where('collection_id', $collection->id)
             ->where('content', $content)
             ->get();
         $this->assertCount(1, $commentaires);
@@ -128,11 +128,11 @@ class CommentaireControllerTest extends TestCase
     public function update_redirects(): void
     {
         $commentaire = Commentaire::factory()->create();
-        $book = Book::factory()->create();
+        $collection = Collection::factory()->create();
         $content = $this->faker->paragraphs(3, true);
 
         $response = $this->put(route('commentaire.update', $commentaire), [
-            'book_id' => $book->id,
+            'collection_id' => $collection->id,
             'content' => $content,
         ]);
 
@@ -141,7 +141,7 @@ class CommentaireControllerTest extends TestCase
         $response->assertRedirect(route('commentaire.index'));
         $response->assertSessionHas('commentaire.id', $commentaire->id);
 
-        $this->assertEquals($book->id, $commentaire->book_id);
+        $this->assertEquals($collection->id, $commentaire->collection_id);
         $this->assertEquals($content, $commentaire->content);
     }
 

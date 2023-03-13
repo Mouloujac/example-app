@@ -7,10 +7,10 @@ created:
     - database/factories/CollectionFactory.php
     - database/factories/NoteFactory.php
     - database/factories/CommentaireFactory.php
-    - database/migrations/2023_03_10_090430_create_books_table.php
-    - database/migrations/2023_03_10_090431_create_collections_table.php
-    - database/migrations/2023_03_10_090432_create_notes_table.php
-    - database/migrations/2023_03_10_090433_create_commentaires_table.php
+    - database/migrations/2023_03_13_132723_create_books_table.php
+    - database/migrations/2023_03_13_132724_create_collections_table.php
+    - database/migrations/2023_03_13_132725_create_notes_table.php
+    - database/migrations/2023_03_13_132726_create_commentaires_table.php
     - app/Models/Book.php
     - app/Models/Collection.php
     - app/Models/Note.php
@@ -41,5 +41,5 @@ skipped:
 models:
     Book: { googlebook_id: 'string:200', title: 'string:400 nullable', author: 'string:250 nullable', description: 'longtext nullable', img: 'longtext nullable', note_id: 'id foreign nullable', commentaire_id: 'id foreign nullable' }
     Collection: { user_id: 'id foreign', book_id: 'id foreign' }
-    Note: { book_id: 'id foreign', content: int }
-    Commentaire: { book_id: 'id foreign', content: 'string:200' }
+    Note: { collection_id: 'id foreign', content: int }
+    Commentaire: { collection_id: 'id foreign', content: 'string:200' }

@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('googlebook_id', 200)->unique();
+            $table->string('googlebook_id', 200);
             $table->string('title', 400)->nullable();
             $table->string('author', 250)->nullable();
             $table->longText('description')->nullable();

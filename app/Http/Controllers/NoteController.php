@@ -27,7 +27,7 @@ class NoteController extends Controller
     {
         $note = Note::create($request->validated());
 
-        $request->session()->flash('note.id', $note->id);
+       
 
         return redirect()->route('note.index');
     }
@@ -46,7 +46,6 @@ class NoteController extends Controller
     {
         $note->update($request->validated());
 
-        $request->session()->flash('note.id', $note->id);
 
         return redirect()->route('note.index');
     }

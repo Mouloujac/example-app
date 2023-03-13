@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Collection;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -60,16 +60,16 @@ class NoteControllerTest extends TestCase
      */
     public function store_saves_and_redirects(): void
     {
-        $book = Book::factory()->create();
+        $collection = Collection::factory()->create();
         $content = $this->faker->paragraphs(3, true);
 
         $response = $this->post(route('note.store'), [
-            'book_id' => $book->id,
+            'collection_id' => $collection->id,
             'content' => $content,
         ]);
 
         $notes = Note::query()
-            ->where('book_id', $book->id)
+            ->where('collection_id', $collection->id)
             ->where('content', $content)
             ->get();
         $this->assertCount(1, $notes);
@@ -128,11 +128,11 @@ class NoteControllerTest extends TestCase
     public function update_redirects(): void
     {
         $note = Note::factory()->create();
-        $book = Book::factory()->create();
+        $collection = Collection::factory()->create();
         $content = $this->faker->paragraphs(3, true);
 
         $response = $this->put(route('note.update', $note), [
-            'book_id' => $book->id,
+            'collection_id' => $collection->id,
             'content' => $content,
         ]);
 
@@ -141,7 +141,7 @@ class NoteControllerTest extends TestCase
         $response->assertRedirect(route('note.index'));
         $response->assertSessionHas('note.id', $note->id);
 
-        $this->assertEquals($book->id, $note->book_id);
+        $this->assertEquals($collection->id, $note->collection_id);
         $this->assertEquals($content, $note->content);
     }
 

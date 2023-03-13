@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\BookUpdateRequest;
 use App\Models\Book;
+use App\Models\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -22,11 +24,18 @@ class BookController extends Controller
         return view('book.create');
     }
 
-    public function store(BookStoreRequest $request): RedirectResponse
+    public function store(BookStoreRequest $request)
     {
-        $book = Book::create($request->validated());
 
-        return redirect()->route('book.index');
+        $book = Book::firstOrCreate($request->validated());
+        $user_id = Auth::id();
+        $book_id = $book->id;
+        $collection = Collection::create([
+            'book_id' => $book_id,
+            'user_id' => $user_id,
+        ]);
+
+        return response()->noContent();
     }
 
     public function show(Request $request, Book $book): View

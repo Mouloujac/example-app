@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Book;
+use App\Models\Collection;
 use App\Models\Note;
 
 class NoteFactory extends Factory
@@ -22,7 +22,7 @@ class NoteFactory extends Factory
     public function definition(): array
     {
         return [
-            'book_id' => Book::factory(),
+            'collection_id' => Collection::factory(),
             'content' => $this->faker->paragraphs(3, true),
         ];
     }

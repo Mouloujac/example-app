@@ -13,15 +13,10 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->string('googlebook_id', 200)->unique();
-            $table->string('title', 400)->nullable();
-            $table->string('author', 250)->nullable();
-            $table->longText('description')->nullable();
-            $table->longText('img')->nullable();
-            $table->foreignId('note_id')->nullable()->constrained();
-            $table->foreignId('commentaire_id')->nullable()->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('book_id')->constrained();
             $table->timestamps();
         });
 
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('collections');
     }
 };

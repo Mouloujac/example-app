@@ -24,6 +24,7 @@ class BookStoreRequest extends FormRequest
             'title' => ['nullable', 'string', 'max:400'],
             'description' => ['nullable', 'string'],
             'author' => ['nullable', 'string', 'max:250'],
+            'img' => ['nullable', 'string'],
             'note_id' => ['nullable', 'integer', 'exists:notes,id'],
             'commentaire_id' => ['nullable', 'integer', 'exists:commentaires,id'],
         ];

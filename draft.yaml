@@ -13,11 +13,11 @@ models:
     book_id: id foreign 
 
   Note:
-    book_id: id foreign
+    collection_id: id foreign
     content: int
 
   Commentaire:
-    book_id: id foreign
+    collection_id: id foreign
     content: string:200
 
 
@@ -33,3 +33,5 @@ controllers:
 
   Commentaire:
     resource
+
+  

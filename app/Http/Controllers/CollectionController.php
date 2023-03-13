@@ -7,15 +7,21 @@ use App\Http\Requests\CollectionUpdateRequest;
 use App\Models\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
-    public function index(Request $request): View
-    {
-        $collections = Collection::all();
+    public function index(Request $request)
+    {   
+        $user = Auth::id();
+        return auth()->user()->books()->get();
+        $collections = Collection::where('user_id', $user)
+                    ->join('books', 'books.id', '=' ,'collections.book_id')
+                    ->get();
 
-        return view('collection.index', compact('collections'));
+        return response()->json($collections);
     }
 
     public function create(Request $request): View
@@ -27,7 +33,6 @@ class CollectionController extends Controller
     {
         $collection = Collection::create($request->validated());
 
-        $request->session()->flash('collection.id', $collection->id);
 
         return redirect()->route('collection.index');
     }
@@ -46,15 +51,19 @@ class CollectionController extends Controller
     {
         $collection->update($request->validated());
 
-        $request->session()->flash('collection.id', $collection->id);
 
         return redirect()->route('collection.index');
     }
 
-    public function destroy(Request $request, Collection $collection): RedirectResponse
+    public function destroy(Request $request, Collection $collection)
     {
+        $user_id = Auth::id();
+        if(Auth::id() !== $collection->user_id) {
+            abort(403);
+        }
+
         $collection->delete();
 
-        return redirect()->route('collection.index');
+        return response()->noContent();
     }
 }

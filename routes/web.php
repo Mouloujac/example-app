@@ -27,3 +27,11 @@ Route::resource('collection', App\Http\Controllers\CollectionController::class);
 Route::resource('note', App\Http\Controllers\NoteController::class);
 
 Route::resource('commentaire', App\Http\Controllers\CommentaireController::class);
+
+Route::resource('book', App\Http\Controllers\BookController::class);
+
+Route::resource('collection', App\Http\Controllers\CollectionController::class);
+
+Route::resource('note', App\Http\Controllers\NoteController::class);
+
+Route::resource('commentaire', App\Http\Controllers\CommentaireController::class);
