@@ -11,15 +11,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
+
 class CollectionController extends Controller
 {
     public function index(Request $request)
     {   
-        $user = Auth::id();
-        return auth()->user()->books()->get();
-        $collections = Collection::where('user_id', $user)
-                    ->join('books', 'books.id', '=' ,'collections.book_id')
-                    ->get();
+        /** @var User $user */
+        $user = auth()->user();
+        $collections = $user
+            ->collections()
+            ->with('note', 'book', 'commentaire')
+            ->get();
 
         return response()->json($collections);
     }

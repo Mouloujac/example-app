@@ -23,13 +23,11 @@ class CommentaireController extends Controller
         return view('commentaire.create');
     }
 
-    public function store(CommentaireStoreRequest $request): RedirectResponse
+    public function store(CommentaireStoreRequest $request)
     {
         $commentaire = Commentaire::create($request->validated());
 
-        $request->session()->flash('commentaire.id', $commentaire->id);
-
-        return redirect()->route('commentaire.index');
+        return response()->json($commentaire, 201);
     }
 
     public function show(Request $request, Commentaire $commentaire): View
@@ -46,15 +44,12 @@ class CommentaireController extends Controller
     {
         $commentaire->update($request->validated());
 
-        $request->session()->flash('commentaire.id', $commentaire->id);
-
         return redirect()->route('commentaire.index');
     }
 
-    public function destroy(Request $request, Commentaire $commentaire): RedirectResponse
+    public function destroy(Request $request, Commentaire $commentaire)
     {
         $commentaire->delete();
-
-        return redirect()->route('commentaire.index');
+        return response()->noContent();
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Requests\NoteUpdateRequest;
 use App\Models\Note;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class NoteController extends Controller
@@ -23,13 +25,11 @@ class NoteController extends Controller
         return view('note.create');
     }
 
-    public function store(NoteStoreRequest $request): RedirectResponse
+    public function store(NoteStoreRequest $request)
     {
         $note = Note::create($request->validated());
 
-       
-
-        return redirect()->route('note.index');
+        return response()->json($note, 201);
     }
 
     public function show(Request $request, Note $note): View
@@ -42,18 +42,20 @@ class NoteController extends Controller
         return view('note.edit', compact('note'));
     }
 
-    public function update(NoteUpdateRequest $request, Note $note): RedirectResponse
+    public function update(NoteUpdateRequest $request, Note $note)
     {
         $note->update($request->validated());
 
 
-        return redirect()->route('note.index');
+        return response()->noContent();
     }
 
-    public function destroy(Request $request, Note $note): RedirectResponse
+    public function destroy(Request $request, Note $note)
     {
+        // $user = Auth::user();
+        // $note->collection()->whereHas($user)->exist()->delete();
+        
         $note->delete();
-
-        return redirect()->route('note.index');
+        return response()->noContent();
     }
 }

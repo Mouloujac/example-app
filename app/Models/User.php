@@ -48,4 +48,10 @@ class User extends Authenticatable
         ->as('collection')
         ->withPivot('id');
     }
+
+    public function collections() {
+        return $this->hasMany(Collection::class);
+    }
+
+    
 }

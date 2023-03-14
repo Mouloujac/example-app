@@ -14,10 +14,12 @@ models:
 
   Note:
     collection_id: id foreign
+    content: longtext
     content: int
 
   Commentaire:
     collection_id: id foreign
+    content: longtext
     content: string:200
 
 

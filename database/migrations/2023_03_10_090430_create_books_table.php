@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('author', 250)->nullable();
             $table->longText('description')->nullable();
             $table->longText('img')->nullable();
-            $table->foreignId('note_id')->nullable()->constrained();
-            $table->foreignId('commentaire_id')->nullable()->constrained();
             $table->timestamps();
         });
 

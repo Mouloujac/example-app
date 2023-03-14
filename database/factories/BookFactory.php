@@ -28,8 +28,8 @@ class BookFactory extends Factory
             'author' => $this->faker->regexify('[A-Za-z0-9]{250}'),
             'description' => $this->faker->text,
             'img' => $this->faker->text,
-            'note_id' => Note::factory(),
-            'commentaire_id' => Commentaire::factory(),
+            // 'note_id' => Note::factory(),
+            // 'commentaire_id' => Commentaire::factory(),
         ];
     }
 }

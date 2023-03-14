@@ -23,7 +23,7 @@ class NoteFactory extends Factory
     {
         return [
             'collection_id' => Collection::factory(),
-            'content' => $this->faker->paragraphs(3, true),
+            'content' => $this->faker->paragraphs(1, true),
         ];
     }
 }

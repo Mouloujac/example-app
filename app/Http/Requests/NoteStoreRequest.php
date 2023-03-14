@@ -20,7 +20,7 @@ class NoteStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'book_id' => ['required', 'integer', 'exists:books,id'],
+            'collection_id' => ['required', 'integer', 'exists:collections,id'],
             'content' => ['required', 'string'],
         ];
     }

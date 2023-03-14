@@ -24,14 +24,8 @@ Route::resource('book', App\Http\Controllers\BookController::class);
 
 Route::resource('collection', App\Http\Controllers\CollectionController::class);
 
-Route::resource('note', App\Http\Controllers\NoteController::class);
+Route::resource('note', App\Http\Controllers\NoteController::class)->middleware('auth:sanctum');
 
 Route::resource('commentaire', App\Http\Controllers\CommentaireController::class);
-
-Route::resource('book', App\Http\Controllers\BookController::class);
-
-Route::resource('collection', App\Http\Controllers\CollectionController::class);
-
-Route::resource('note', App\Http\Controllers\NoteController::class);
-
-Route::resource('commentaire', App\Http\Controllers\CommentaireController::class);
+!
+Route::resource('user', App\Http\Controllers\UserController::class);
