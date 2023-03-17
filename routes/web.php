@@ -22,10 +22,10 @@ require __DIR__.'/auth.php';
 
 Route::resource('book', App\Http\Controllers\BookController::class);
 
-Route::resource('collection', App\Http\Controllers\CollectionController::class);
+Route::resource('collection', App\Http\Controllers\CollectionController::class)->middleware('auth:sanctum');;
 
 Route::resource('note', App\Http\Controllers\NoteController::class)->middleware('auth:sanctum');
 
-Route::resource('commentaire', App\Http\Controllers\CommentaireController::class);
+Route::resource('commentaire', App\Http\Controllers\CommentaireController::class)->middleware('auth:sanctum');;
 !
 Route::resource('user', App\Http\Controllers\UserController::class);
