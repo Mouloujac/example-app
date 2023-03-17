@@ -40,11 +40,11 @@ class CommentaireController extends Controller
         return view('commentaire.edit', compact('commentaire'));
     }
 
-    public function update(CommentaireUpdateRequest $request, Commentaire $commentaire): RedirectResponse
+    public function update(CommentaireUpdateRequest $request, Commentaire $commentaire)
     {
         $commentaire->update($request->validated());
 
-        return redirect()->route('commentaire.index');
+        return response()->noContent();
     }
 
     public function destroy(Request $request, Commentaire $commentaire)

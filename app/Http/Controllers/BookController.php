@@ -6,6 +6,7 @@ use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\BookUpdateRequest;
 use App\Models\Book;
 use App\Models\Collection;
+use App\Models\Note;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -33,6 +34,9 @@ class BookController extends Controller
         $collection = Collection::create([
             'book_id' => $book_id,
             'user_id' => $user_id,
+        ]);
+        $note = Note::create([
+            'collection_id' => $collection->id,
         ]);
 
         return response()->noContent();
